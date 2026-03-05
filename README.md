@@ -68,7 +68,7 @@ bundle exec rspec
 │   ├── input1.txt            # Sample input 1
 │   ├── input2.txt            # Sample input 2
 │   └── input3.txt            # Sample input 3
-├── Gemfile                   # Dependencies (rspec only)
+├── Gemfile                   # Dependencies (rspec, and bigdecimal only)
 └── README.md
 ```
 
