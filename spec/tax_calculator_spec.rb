@@ -116,5 +116,17 @@ RSpec.describe TaxCalculator do
       result = calculator.calculate(build_item(name: "imported box of chocolates", unit_price: "10.00", imported: true))
       expect(result.tax).to eq(BigDecimal("0.50"))
     end
+
+    # 15% of 47.50 = 7.125, must round to nearest 0.05 (7.15), not 0.01 (7.13)
+    it "rounds to nearest 0.05, not nearest 0.01" do
+      result = calculator.calculate(build_item(name: "imported bottle of perfume", unit_price: "47.50", imported: true))
+      expect(result.tax).to eq(BigDecimal("7.15"))
+    end
+
+    # 5% of 11.25 = 0.5625, must round to 0.60, not 0.57
+    it "rounds 0.5625 up to 0.60, not 0.57" do
+      result = calculator.calculate(build_item(name: "imported box of chocolates", unit_price: "11.25", imported: true))
+      expect(result.tax).to eq(BigDecimal("0.60"))
+    end
   end
 end
